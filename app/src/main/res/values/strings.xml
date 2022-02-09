@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">DrawingApp</string>
+    <string name="btn_pencil">Pencil Button</string>
+    <string name="btn_arrow">Arrow Button</string>
+    <string name="btn_rectangle">Rectangle Button</string>
+    <string name="btn_ellipse">Ellipse Button</string>
+
+    <string name="btn_color_palette">Color Palette</string>
+    <string name="btn_red_color">Red color Button</string>
+    <string name="btn_green_color">Green color Button</string>
+    <string name="btn_blue_color">Blue color Button</string>
+    <string name="btn_black_color">Black color Button</string>
+
+</resources>
