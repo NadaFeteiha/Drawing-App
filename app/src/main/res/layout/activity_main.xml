@@ -13,7 +13,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/small_margin_top"
         android:background="@drawable/layout_bg"
         android:orientation="horizontal">
 
@@ -21,9 +21,9 @@
             android:id="@+id/ib_pencil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/small_img_btn"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
+            android:padding="@dimen/small_padding_img_btn"
+            android:layout_marginHorizontal="@dimen/small_margin_horizontal"
+            android:layout_marginVertical="@dimen/small_margin_vertical"
             android:src="@drawable/ic_baseline_create_24"
             android:background="@color/transparent"
             android:contentDescription="@string/btn_pencil" />
@@ -33,9 +33,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_made_24"
-            android:padding="@dimen/small_img_btn"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
+            android:padding="@dimen/small_padding_img_btn"
+            android:layout_marginHorizontal="@dimen/small_margin_horizontal"
+            android:layout_marginVertical="@dimen/small_margin_vertical"
             android:background="@color/transparent"
             android:contentDescription="@string/btn_arrow" />
 
@@ -44,9 +44,9 @@
             android:id="@+id/ib_rectangle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/small_img_btn"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
+            android:padding="@dimen/small_padding_img_btn"
+            android:layout_marginHorizontal="@dimen/small_margin_horizontal"
+            android:layout_marginVertical="@dimen/small_margin_vertical"
             android:src="@drawable/ic_rectangle_24"
             android:background="@color/transparent"
             android:contentDescription="@string/btn_rectangle" />
@@ -55,9 +55,9 @@
             android:id="@+id/ib_ellipse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/small_img_btn"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
+            android:padding="@dimen/small_padding_img_btn"
+            android:layout_marginHorizontal="@dimen/small_margin_horizontal"
+            android:layout_marginVertical="@dimen/small_margin_vertical"
             android:src="@drawable/ic_circle_24"
             android:background="@color/transparent"
             android:contentDescription="@string/btn_ellipse" />
@@ -66,9 +66,9 @@
             android:id="@+id/ib_color_palette"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/small_img_btn"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
+            android:padding="@dimen/small_padding_img_btn"
+            android:layout_marginHorizontal="@dimen/small_margin_horizontal"
+            android:layout_marginVertical="@dimen/small_margin_vertical"
             android:src="@drawable/ic_color_palette_24"
             android:background="@color/transparent"
             android:contentDescription="@string/btn_color_palette" />
@@ -88,9 +88,9 @@
 
         <ImageButton
             android:id="@+id/ib_color"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginHorizontal="5dp"
+            android:layout_width="@dimen/dim_color_btn"
+            android:layout_height="@dimen/dim_color_btn"
+            android:layout_marginHorizontal="@dimen/small_margin_horizontal"
             android:layout_marginVertical="10dp"
             android:src="@drawable/ic_color_square_24"
             android:scaleType="fitXY"
@@ -102,10 +102,10 @@
             android:contentDescription="@string/btn_red_color" />
 
         <ImageButton
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
+            android:layout_width="@dimen/dim_color_btn"
+            android:layout_height="@dimen/dim_color_btn"
+            android:layout_marginHorizontal="@dimen/small_margin_horizontal"
+            android:layout_marginVertical="@dimen/small_margin_vertical"
             android:src="@drawable/ic_color_square_24"
             android:scaleType="fitXY"
             android:onClick="getSelectedColor"
@@ -116,10 +116,10 @@
             android:contentDescription="@string/btn_green_color" />
 
         <ImageButton
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
+            android:layout_width="@dimen/dim_color_btn"
+            android:layout_height="@dimen/dim_color_btn"
+            android:layout_marginHorizontal="@dimen/small_margin_horizontal"
+            android:layout_marginVertical="@dimen/small_margin_vertical"
             android:src="@drawable/ic_color_square_24"
             android:scaleType="fitXY"
             android:onClick="getSelectedColor"
@@ -130,10 +130,10 @@
             android:contentDescription="@string/btn_blue_color"/>
 
         <ImageButton
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
+            android:layout_width="@dimen/dim_color_btn"
+            android:layout_height="@dimen/dim_color_btn"
+            android:layout_marginHorizontal="@dimen/small_margin_horizontal"
+            android:layout_marginVertical="@dimen/small_margin_vertical"
             android:src="@drawable/ic_color_square_24"
             android:scaleType="fitXY"
             android:onClick="getSelectedColor"

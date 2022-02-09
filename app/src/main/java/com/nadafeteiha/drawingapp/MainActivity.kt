@@ -1,5 +1,6 @@
 package com.nadafeteiha.drawingapp
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
@@ -12,7 +13,7 @@ import com.nadafeteiha.drawingapp.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() , View.OnClickListener{
 
     private lateinit var binding: ActivityMainBinding
-
+    private var lastToolSelected:Int = Constants.ACTION_PENCIL
     // arraylist contains all imageButton to control selector
     private val tools = ArrayList<ImageButton>()
 
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() , View.OnClickListener{
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initLayout()
-        setDefaultLayout()
+        setDefaultLayout(lastToolSelected)
     }
 
     private fun initLayout(){
@@ -40,9 +41,9 @@ class MainActivity : AppCompatActivity() , View.OnClickListener{
     }
 
     // set the pencil the default tool for use
-    private fun setDefaultLayout(){
-        selectToolView(R.id.ib_pencil)
-        binding.drawingView.setDrawingTool(R.id.ib_pencil)
+    private fun setDefaultLayout(resID: Int){
+        selectToolView(resID)
+        binding.drawingView.setDrawingTool(resID)
         binding.llColor.visibility = View.INVISIBLE
     }
 
@@ -66,6 +67,7 @@ class MainActivity : AppCompatActivity() , View.OnClickListener{
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.ib_pencil , R.id.ib_rectangle , R.id.ib_arrow , R.id.ib_ellipse-> {
+                lastToolSelected = v.id
                 selectToolView(v.id)
                 binding.drawingView.setDrawingTool(v.id)
                 binding.llColor.visibility = View.INVISIBLE
@@ -81,6 +83,6 @@ class MainActivity : AppCompatActivity() , View.OnClickListener{
      fun getSelectedColor(v: View) {
         binding.drawingView.setColor(v.tag.toString())
         binding.llColor.visibility = View.INVISIBLE
-        setDefaultLayout()
+        setDefaultLayout(lastToolSelected)
     }
 }

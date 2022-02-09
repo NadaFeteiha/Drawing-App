@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <dimen name="small_img_btn">5dp</dimen>
-
+    <dimen name="small_padding_img_btn">5dp</dimen>
+    <dimen name="small_margin_horizontal">5dp</dimen>
+    <dimen name="small_margin_vertical">10dp</dimen>
+    <dimen name="small_margin_top">15dp</dimen>
+    <dimen name="dim_color_btn">25dp</dimen>
 </resources>
