@@ -2,7 +2,7 @@
 
 Drawing app is a simple drawing application that allows the user to draw using a pencil or using shapes(arrow, rectangle, ellipse). Also, the user can change the drawing color.
 
-## :rocket: Tech stack 
+## :rocket: Technical   
 
 - [Kotlin](https://kotlinlang.org/) 
 - [Data Binding Library](https://developer.android.com/codelabs/android-databinding#0)
