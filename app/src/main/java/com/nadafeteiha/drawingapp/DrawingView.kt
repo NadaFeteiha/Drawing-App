@@ -5,11 +5,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.view.ViewConfiguration
-import android.graphics.Color
-import android.graphics.Paint
 import kotlin.math.abs
 import kotlin.math.atan2
 import kotlin.math.cos
@@ -33,7 +29,10 @@ class DrawingView (context: Context , attrs: AttributeSet): View(context , attrs
     private var currentX = 0f
     private var currentY = 0f
 
-    private val mDrawPaint = Paint().apply {
+    private var firstX = 0f
+    private var firstY = 0f
+
+    private var mDrawPaint = Paint().apply {
         color = drawColor
         style = Paint.Style.STROKE
         strokeJoin = Paint.Join.ROUND
@@ -52,15 +51,18 @@ class DrawingView (context: Context , attrs: AttributeSet): View(context , attrs
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.drawBitmap(mCanvasBitmap, 0f, 0f, null)
+
         for (p in mDrawPaths) {
             mDrawPaint.color = p.color
             canvas.drawPath(p, mDrawPaint)
         }
+        canvas.drawBitmap(mCanvasBitmap, 0f, 0f, mDrawPaint)
+
         if (!currentDrawPath.isEmpty) {
             mDrawPaint.color = currentDrawPath.color
             canvas.drawPath(currentDrawPath, mDrawPaint)
         }
+        drawShape(canvas)
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -72,17 +74,22 @@ class DrawingView (context: Context , attrs: AttributeSet): View(context , attrs
 
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
+                firstX = touchX
+                firstY = touchY
                startDrawing(touchX, touchY)
             }
 
             MotionEvent.ACTION_MOVE -> {
                 if (actionDrawing == Constants.ACTION_PENCIL){
                    pointerMoving(touchX, touchY)
+                }else{
+                    currentX = touchX
+                    currentY = touchY
                 }
             }
 
             MotionEvent.ACTION_UP -> {
-               drawShape(touchX, touchY)
+                drawShape(mCanvas)
                 // Add the current path to the drawing so far
                 mDrawPaths.add(currentDrawPath)
                 // Reset the path so it doesn't get drawn again.
@@ -98,34 +105,34 @@ class DrawingView (context: Context , attrs: AttributeSet): View(context , attrs
     * this function take x and y points and draw the shape that been selected
     * actionDrawing contain the resource id for the shape that should draw
     * */
-    private fun drawShape(touchX: Float, touchY: Float) {
+    private fun drawShape(mCanvas: Canvas) {
         when(actionDrawing){
             Constants.ACTION_RECTANGLE ->{
                 mCanvas.drawRect(currentX, currentY,
-                    touchX, touchY, mDrawPaint)
+                    firstX, firstY, mDrawPaint)
             }
 
             Constants.ACTION_ELLIPSE ->{
                 mCanvas.drawOval(currentX, currentY,
-                    touchX, touchY, mDrawPaint)
+                    firstX, firstY, mDrawPaint)
             }
 
             Constants.ACTION_ARROW -> {
-                val dx: Float = touchX - currentX
-                val dy: Float = touchY - currentY
+                val dx: Float =  currentX - firstX
+                val dy: Float =   currentY - firstY
                 val rad = atan2(dy.toDouble(), dx.toDouble()).toFloat()
 
-                mCanvas.drawLine(currentX, currentY, touchX, touchY, mDrawPaint)
+                mCanvas.drawLine(firstX, firstY,currentX, currentY, mDrawPaint)
                 mCanvas.drawLine(
-                    touchX, touchY,
-                    (touchX + cos(rad + Math.PI * 0.75) * 20).toFloat(),
-                    (touchY + sin(rad + Math.PI * 0.75) * 20).toFloat(),
+                    currentX, currentY,
+                    (currentX + cos(rad + Math.PI * 0.75) * 20).toFloat(),
+                    (currentY + sin(rad + Math.PI * 0.75) * 20).toFloat(),
                     mDrawPaint
                 )
                 mCanvas.drawLine(
-                    touchX, touchY,
-                    (touchX + cos(rad - Math.PI * 0.75) * 20).toFloat(),
-                    (touchY + sin(rad - Math.PI * 0.75) * 20).toFloat(),
+                    currentX, currentY,
+                    (currentX + cos(rad - Math.PI * 0.75) * 20).toFloat(),
+                    (currentY + sin(rad - Math.PI * 0.75) * 20).toFloat(),
                     mDrawPaint
                 )
             }
@@ -173,6 +180,20 @@ class DrawingView (context: Context , attrs: AttributeSet): View(context , attrs
     internal fun setColor(newColor: String) {
         drawColor = Color.parseColor(newColor)
         mDrawPaint.color = drawColor
+    }
+
+    internal fun setFont(size:Int){
+        when(size){
+            1 ->{
+                mDrawPaint.strokeWidth = 12f
+            }
+            2->{
+                mDrawPaint.strokeWidth = 30f
+            }
+            3->{
+                mDrawPaint.strokeWidth = 45f
+            }
+        }
     }
 
     // class for contain the path and each color fot this path
